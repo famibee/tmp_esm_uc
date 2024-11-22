@@ -1,0 +1,106 @@
+{
+	"name": "uc",
+	"version": "1.0.0",
+	"productName": "桜の樹の下には",
+	"description": "梶井基次郎「桜の樹の下には」をノベルゲーム化したものです。",
+	"main": "out/main/index.js",
+	"appId": "com.fc2.blog.famibee.skynovel.uc",
+	"appBundleId": "com.fc2.blog.famibee.skynovel.uc",
+	"appCopyright": "(c)ふぁみべぇ",
+	"author": "ふぁみべぇ",
+	"license": "MIT",
+	"type": "module",
+	"dependencies": {
+		"@electron-toolkit/preload": "^3.0.1",
+		"@electron-toolkit/utils": "^3.0.0",
+		"@famibee/skynovel_esm": "../skynovel_esm",
+		"about-window": "^1.15.2",
+		"humane-js": "^3.2.2"
+	},
+	"devDependencies": {
+		"@electron-toolkit/eslint-config-prettier": "^2.0.0",
+		"@electron-toolkit/eslint-config-ts": "^2.0.0",
+		"@electron-toolkit/tsconfig": "^1.0.1",
+		"@types/humane-js": "^3.2.4",
+		"electron": "^33.2.0",
+		"electron-builder": "^25.1.8",
+		"electron-vite": "^2.3.0",
+		"vite": "^5.4.11"
+	},
+	"scripts": {
+		"web_dev": "vite",
+		"web_prd": "tsc && vite build",
+		"web_pv": "vite preview",
+		"app_dev": "electron-vite dev",
+		"app_dev_rnd": "vite src/renderer",
+		"app_prd": "electron-vite build",
+		"app_pv": "electron-vite preview",
+		"pkg:win": "electron-vite build && electron-builder --win",
+		"pkg:mac": "electron-vite build && electron-builder --mac",
+		"pkg:linux": "electron-vite build && electron-builder --linux",
+		"update": "bun update && bun app_dev"
+	},
+	"build": {
+		"appId": "com.fc2.blog.famibee.skynovel.uc",
+		"productName": "桜の樹の下には",
+		"artifactName": "${name}-${version}-${arch}.${ext}",
+		"directories": {
+			"output": "build/package/"
+		},
+		"files": [
+			"build/icon/*",
+			"build/include/*",
+			"out/**/*"
+		],
+		"asar": true,
+		"mac": {
+			"icon": "build/icon/icon.icns",
+			"target": ["dmg"],
+			"category": "public.app-category.games"
+		},
+		"dmg": {
+			"contents": [
+				{
+					"x": 410,
+					"y": 220,
+					"type": "link",
+					"path": "/Applications"
+				},
+				{
+					"x": 130,
+					"y": 220,
+					"type": "file"
+				},
+				{
+					"x": 130,
+					"y": 100,
+					"type": "file",
+					"path": "build/include/readme.txt"
+				}
+			]
+		},
+		"win": {
+			"icon": "build/icon/icon.ico",
+			"target": "nsis",
+			"asarUnpack": ["build/include/"]
+		},
+		"linux": {
+			"icon": "build/icon/icon.icns",
+			"target": "AppImage",
+			"category": "Game"
+		}
+	},
+	"keywords": [
+		"sample",
+		"skynovel"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:famibee/SKYNovel_uc_ems.git"
+	},
+	"bugs": {
+		"url": "https://github.com/famibee/SKYNovel_uc/issues",
+		"email": "ugainovel@gmail.com"
+	},
+	"homepage": "https://famibee.blog.fc2.com/"
+}
