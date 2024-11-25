@@ -10,6 +10,5 @@ const hPlg: HPlugin = {};
 import h from './plugin.json';
 for (const nm in h) hPlg[nm] = await import(`./plugin/${nm}/index.ts`);
 
-const {SNWeb} = await import('@famibee/skynovel_esm/web');
-new SNWeb;	// 拡張機能で【(hPlg);】置換するので触らない
-// new SNWeb(hPlg);	// 拡張機能で【(hPlg);】置換するので触らない
+const {SysWeb} = await import('@famibee/skynovel_esm/web');
+new SysWeb(hPlg);	// 拡張機能で【(hPlg);】置換するので触らない
