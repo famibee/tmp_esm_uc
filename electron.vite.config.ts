@@ -28,5 +28,7 @@ export default defineConfig({
 			},
 		},
 	},
-	renderer: {},
+	renderer: {
+		publicDir: '../../public/',
+	},
 });

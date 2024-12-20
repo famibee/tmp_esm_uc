@@ -8,7 +8,10 @@
 import type {HPlugin} from '@famibee/skynovel_esm/web';
 const hPlg: HPlugin = {};
 import h from './plugin.json';
-for (const nm in h) hPlg[nm] = await import(`./plugin/${nm}/index.ts`);
 
-const {SysWeb} = await import('@famibee/skynovel_esm/web');
-new SysWeb(hPlg);	// 拡張機能で【(hPlg);】置換するので触らない
+globalThis.addEventListener('DOMContentLoaded', async ()=> {
+	for (const nm in h) hPlg[nm] = await import(`./plugin/${nm}/index.ts`);
+	const {SysWeb} = await import('@famibee/skynovel_esm/web');
+	new SysWeb(hPlg);	// 拡張機能で【(hPlg);】置換するので触らない
+
+}, {once: true, passive: true});
