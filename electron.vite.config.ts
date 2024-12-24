@@ -29,6 +29,6 @@ export default defineConfig({
 		},
 	},
 	renderer: {
-		publicDir: '../../public/',
+		publicDir: '../../doc/',
 	},
 });

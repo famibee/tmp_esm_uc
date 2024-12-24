@@ -1,6 +1,7 @@
 import type {UserConfig} from 'vite';
 
 export default {
+	publicDir: 'doc',
 	build: {
 		target: 'esnext',
 		rollupOptions: {
