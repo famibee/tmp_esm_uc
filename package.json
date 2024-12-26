@@ -25,7 +25,8 @@
 		"electron": "^33.2.1",
 		"electron-builder": "^25.1.8",
 		"electron-vite": "^2.3.0",
-		"vite": "^6.0.5"
+		"fs-extra": "^11.2.0",
+		"vite": "^6.0.6"
 	},
 	"scripts": {
 		"web_dev": "vite",
@@ -55,7 +56,9 @@
 		"asar": true,
 		"mac": {
 			"icon": "build/icon/icon.icns",
-			"target": ["dmg"],
+			"target": [
+				"dmg"
+			],
 			"category": "public.app-category.games"
 		},
 		"dmg": {
@@ -82,7 +85,9 @@
 		"win": {
 			"icon": "build/icon/icon.ico",
 			"target": "nsis",
-			"asarUnpack": ["build/include/"]
+			"asarUnpack": [
+				"build/include/"
+			]
 		},
 		"linux": {
 			"icon": "build/icon/icon.icns",
@@ -96,7 +101,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com:famibee/SKYNovel_uc_ems.git"
+		"url": "git+ssh://git@github.com:famibee/tmp_esm_uc.git"
 	},
 	"bugs": {
 		"url": "https://github.com/famibee/SKYNovel_uc/issues",
