@@ -29,6 +29,9 @@ export default defineConfig({
 		},
 	},
 	renderer: {
+		build: {
+			target: 'esnext',
+		},
 		publicDir: '../../doc/',
 	},
 });

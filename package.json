@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@electron-toolkit/preload": "^3.0.1",
 		"@electron-toolkit/utils": "^3.0.0",
-		"@famibee/skynovel_esm": "../bluesnovel",
+		"@famibee/skynovel_esm": "../skynovel_esm",
 		"about-window": "^1.15.2",
 		"humane-js": "^3.2.2"
 	},
@@ -26,12 +26,16 @@
 		"electron-builder": "^25.1.8",
 		"electron-vite": "^2.3.0",
 		"fs-extra": "^11.2.0",
-		"vite": "^6.0.6"
+		"rimraf": "^6.0.1",
+		"vite": "^6.0.7"
 	},
 	"scripts": {
+		"web": "vite --open",
+		"web_bld": "npm run web_prd && vite preview --open",
 		"web_dev": "vite",
-		"web_prd": "tsc && vite build",
+		"web_prd": "vite build",
 		"web_pv": "vite preview",
+		"app": "npm run app_dev",
 		"app_dev": "electron-vite dev",
 		"app_dev_rnd": "vite src/renderer",
 		"app_prd": "electron-vite build",
@@ -39,6 +43,7 @@
 		"pkg:win": "electron-vite build && electron-builder --win",
 		"pkg:mac": "electron-vite build && electron-builder --mac",
 		"pkg:linux": "electron-vite build && electron-builder --linux",
+		"rebuild": "rimraf dist && rimraf out && npm run web_prd && npm run app_prd",
 		"update": "bun update && bun app_dev"
 	},
 	"build": {

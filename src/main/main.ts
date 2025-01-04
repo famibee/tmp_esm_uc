@@ -10,7 +10,8 @@ import {crashReporter, app, BrowserWindow, Menu} from 'electron'
 import {join} from 'path'
 import {electronApp, optimizer, is, platform} from '@electron-toolkit/utils'
 
-import pkg from '../../package.json';
+const pp_path = join(__dirname, '../../');
+const pkg = require(pp_path +'package.json');
 app.name = pkg.name;	// 非パッケージだと 'Electron' になる件対応
 app.setPath('userData', app.getPath('appData') +'/'+ app.name);
 
@@ -50,15 +51,16 @@ app.whenReady().then(async ()=> {
 	const urlEr = process.env['ELECTRON_RENDERER_URL'];
 	if (is.dev && urlEr) w.loadURL(urlEr);
 	else w.loadFile(join(__dirname, '../renderer/index.html'));
+	// else w.loadFile('./index.html');		とかはダメ（2025/01/05）
 
 	const isMac = platform.isMacOS;
 	const menu = Menu.buildFromTemplate([{
 		label: 'システム',
 		submenu: [
 			{label: 'このアプリについて', click: ()=> require('about-window').default({
-				icon_path	: join(__dirname, 'app/icon.png'),
-				package_json_dir	: __dirname,
-				copyright	: 'Copyright '+ pkg.appCopyright +' 2024',
+				icon_path	: join(__dirname, '../renderer/icon.png'),
+				package_json_dir	: pp_path,
+				copyright	: 'Copyright '+ pkg.appCopyright +' 2025',
 				homepage	: pkg.homepage,
 				license		: '',
 				use_version_info	: false,
