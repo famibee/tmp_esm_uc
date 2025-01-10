@@ -1,6 +1,8 @@
 # Change Log
 
 ## v2.18.0
+### 2025-01-10
+- vite 6 系だと electron-vite によりバッチファイル系でエラーがわかりにくいのでしばし 5.4.11 で
 ### 2024-12-25
 - electron-vite がサポートするまで、vite は 5 で
 	- Vite 6 support · Issue #673 · alex8088/electron-vite https://github.com/alex8088/electron-vite/issues/673
