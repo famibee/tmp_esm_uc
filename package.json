@@ -22,11 +22,11 @@
 		"@electron-toolkit/eslint-config-ts": "^3.1.0",
 		"@electron-toolkit/tsconfig": "^1.0.1",
 		"@types/humane-js": "^3.2.4",
-		"electron": "^36.2.0",
+		"electron": "^37.0.0",
 		"electron-builder": "^26.0.12",
 		"electron-vite": "^3.1.0",
 		"rimraf": "^6.0.1",
-		"vite": "^6.3.5"
+		"vite": "^7.0.0"
 	},
 	"scripts": {
 		"web": "vite --open",
@@ -39,11 +39,11 @@
 		"app_dev_rnd": "vite src/renderer",
 		"app_prd": "electron-vite build",
 		"app_pv": "electron-vite preview",
-		"pkg:win": "electron-vite build && electron-builder --win",
-		"pkg:mac": "electron-vite build && electron-builder --mac",
-		"pkg:linux": "electron-vite build && electron-builder --linux",
+		"pkg:win": "npm run app_prd && electron-builder --win",
+		"pkg:mac": "npm run app_prd && electron-builder --mac",
+		"pkg:linux": "npm run app_prd && electron-builder --linux",
 		"rebuild": "rimraf dist && rimraf out && npm run web_prd && npm run app_prd",
-		"update": "bun update && bun app_dev"
+		"update": "bun update"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",
