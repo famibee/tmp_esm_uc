@@ -1,11 +1,11 @@
 {
-	"name": "uc",
+	"name": "tmp_esm_uc",
 	"version": "1.0.0",
 	"productName": "桜の樹の下には",
 	"description": "梶井基次郎「桜の樹の下には」をノベルゲーム化したものです。",
 	"main": "out/main/index.js",
-	"appId": "com.fc2.blog.famibee.skynovel.uc",
-	"appBundleId": "com.fc2.blog.famibee.skynovel.uc",
+	"appId": "com.fc2.blog.famibee.skynovel.tmp_esm_uc",
+	"appBundleId": "com.fc2.blog.famibee.skynovel.tmp_esm_uc",
 	"appCopyright": "(c)ふぁみべぇ",
 	"author": "ふぁみべぇ",
 	"license": "MIT",
@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@electron-toolkit/preload": "^3.0.2",
 		"@electron-toolkit/utils": "^4.0.0",
-		"@famibee/skynovel_esm": "^1.2.0",
+		"@famibee/skynovel_esm": "^1.3.4",
 		"about-window": "^1.15.2",
 		"humane-js": "^3.2.2"
 	},
@@ -22,31 +22,28 @@
 		"@electron-toolkit/eslint-config-ts": "^3.1.0",
 		"@electron-toolkit/tsconfig": "^1.0.1",
 		"@types/humane-js": "^3.2.4",
-		"electron": "^37.2.1",
-		"electron-builder": "^26.0.12",
+		"electron": "^38.1.2",
+		"electron-builder": "26.0.15",
 		"electron-vite": "^4.0.0",
+		"psd.js": "^3.9.2",
 		"rimraf": "^6.0.1",
-		"vite": "^7.0.4"
+		"vite": "^7.1.6"
 	},
 	"scripts": {
 		"web": "vite --open",
-		"web_bld": "npm run web_prd && vite preview --open",
-		"web_dev": "vite",
-		"web_prd": "vite build",
-		"web_pv": "vite preview",
-		"app": "npm run app_dev",
-		"app_dev": "electron-vite dev",
-		"app_dev_rnd": "vite src/renderer",
-		"app_prd": "electron-vite build",
-		"app_pv": "electron-vite preview",
-		"pkg:win": "npm run app_prd && electron-builder --win",
-		"pkg:mac": "npm run app_prd && electron-builder --mac",
-		"pkg:linux": "npm run app_prd && electron-builder --linux",
-		"rebuild": "rimraf dist && rimraf out && npm run web_prd && npm run app_prd",
+		"web_bp": "npm run web_bld && vite preview --open",
+		"web_bld": "vite build",
+		"app": "electron-vite dev",
+		"app_bld": "electron-vite build",
+		"pkg:win": "npm run app_bld && electron-builder --win",
+		"pkg:mac": "npm run app_bld && electron-builder --mac",
+		"pkg:linux": "npm run app_bld && electron-builder --linux",
+		"rebuild": "rimraf dist && rimraf out && npm run web_bld && npm run app_bld",
+		"slimdown_mod": "bun remove @ffmpeg-installer/ffmpeg fluent-ffmpeg fs-extra p-queue sharp",
 		"update": "bun update"
 	},
 	"build": {
-		"appId": "com.fc2.blog.famibee.skynovel.uc",
+		"appId": "com.fc2.blog.famibee.skynovel.tmp_esm_uc",
 		"productName": "桜の樹の下には",
 		"artifactName": "${name}-${version}-${arch}.${ext}",
 		"directories": {
@@ -108,7 +105,7 @@
 		"url": "git+ssh://git@github.com:famibee/tmp_esm_uc.git"
 	},
 	"bugs": {
-		"url": "https://github.com/famibee/SKYNovel_uc/issues",
+		"url": "https://github.com/famibee/tmp_esm_uc/issues",
 		"email": "ugainovel@gmail.com"
 	},
 	"homepage": "https://famibee.blog.fc2.com/"

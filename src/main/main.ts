@@ -6,9 +6,9 @@
 ** ***** END LICENSE BLOCK ***** */
 
 // electron メインプロセス
-import {crashReporter, app, BrowserWindow, Menu} from 'electron'
-import {join} from 'path'
-import {electronApp, optimizer, is, platform} from '@electron-toolkit/utils'
+import {crashReporter, app, type BrowserWindow, Menu} from 'electron';
+import {join} from 'path';
+import {electronApp, optimizer, is, platform} from '@electron-toolkit/utils';
 
 const pp_path = join(__dirname, '../../');
 const pkg = require(pp_path +'package.json');
@@ -33,7 +33,7 @@ app.on('second-instance', ()=> {
 });
 app.whenReady().then(async ()=> {
 	// Set app user model id for windows
-	electronApp.setAppUserModelId('com.electron');
+	electronApp.setAppUserModelId(pkg.appId);
 
 	// Default open or close DevTools by F12 in development
 	// and ignore CommandOrControl + R in production.
@@ -54,28 +54,32 @@ app.whenReady().then(async ()=> {
 	// else w.loadFile('./index.html');		とかはダメ（2025/01/05）
 
 	const isMac = platform.isMacOS;
+	const wc = w.webContents;
 	const menu = Menu.buildFromTemplate([{
-		label: 'システム',
+		label: app.name,
 		submenu: [
-			{label: 'このアプリについて', click: ()=> require('about-window').default({
-				icon_path	: join(__dirname, '../renderer/icon.png'),
-				package_json_dir	: pp_path,
-				copyright	: 'Copyright '+ pkg.appCopyright +' 2025',
-				homepage	: pkg.homepage,
-				license		: '',
-				use_version_info	: false,
-			})},
+			{label: 'このアプリについて', click: ()=> {
+				const bw_aw: BrowserWindow = require('about-window').default({
+					icon_path	: join(__dirname, '../renderer/icon.png'),
+					package_json_dir	: pp_path,
+					copyright	: 'Copyright '+ pkg.appCopyright +' 2025',
+					homepage	: pkg.homepage,
+					license		: '',
+					use_version_info	: false,
+				});
+				w.on('close', ()=> bw_aw.close());
+			}},
 			{type: 'separator'},
-			{label: '設定', click: ()=> w.webContents.send('fire', 'c'), accelerator: "CmdOrCtrl+,"},
-			{label: '全画面/ウインドウモード切替', click: ()=> w.webContents.send('fire', 'alt+enter'), accelerator: 'F11'},
-			{label: 'ウインドウサイズを初期に戻す', click: ()=> w.webContents.send('fire', 'Meta+0')},
+			{label: '設定', click: ()=> wc.send('fire', 'c'), accelerator: "CmdOrCtrl+,"},
+			{label: '全画面/ウインドウモード切替', click: ()=> wc.send('fire', 'alt+enter'), accelerator: 'F11'},
+			{label: 'ウインドウサイズを初期に戻す', click: ()=> wc.send('fire', 'Meta+0')},
 			{type: 'separator'},
-			{label: 'メッセージを消す', click: ()=> w.webContents.send('fire', ' ')},
-			{label: 'メッセージ履歴の表示', click: ()=> w.webContents.send('fire', 'r')},
-			{label: '次の選択肢・未読まで進む', click: ()=> w.webContents.send('fire', 'f')},
-			{label: '自動的に読み進む', click: ()=> w.webContents.send('fire', 'a')},
+			{label: 'メッセージを消す', click: ()=> wc.send('fire', ' ')},
+			{label: 'メッセージ履歴の表示', click: ()=> wc.send('fire', 'r')},
+			{label: '次の選択肢・未読まで進む', click: ()=> wc.send('fire', 'f')},
+			{label: '自動的に読み進む', click: ()=> wc.send('fire', 'a')},
 			{type: 'separator'},
-			{label: 'DevTools', click: ()=> w.webContents.openDevTools(), accelerator: 'F12'},
+			{label: 'DevTools', click: ()=> wc.openDevTools(), accelerator: 'F12'},
 			isMac ?{role: 'close'} :{role: 'quit'},
 		],
 	}]);
