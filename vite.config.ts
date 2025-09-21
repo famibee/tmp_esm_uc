@@ -6,6 +6,8 @@
 ** ***** END LICENSE BLOCK ***** */
 
 import type {UserConfig} from 'vite';
+import {CustomHmr} from './src/CustomHmr';
+
 
 export default {
 	publicDir: 'doc',
@@ -24,4 +26,7 @@ export default {
 		// copyPublicDir: false,
 		chunkSizeWarningLimit: 700,
 	},
+	plugins: [
+		CustomHmr(),
+	]
 } satisfies UserConfig;

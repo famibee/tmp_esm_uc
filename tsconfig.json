@@ -62,7 +62,7 @@
 	},
 	"files": [],
 	"references": [
-		{"path": "./tsconfig.node.json"},
-		{"path": "./tsconfig.web.json"},
+		{"path": "./src/tsconfig.node.json"},
+		{"path": "./src/tsconfig.web.json"},
 	]
 }
