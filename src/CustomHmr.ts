@@ -5,15 +5,15 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {EnvironmentModuleNode, PluginOption} from 'vite';
+import type {PluginOption} from 'vite';
 
 // .sn など更新リロード用
 export function CustomHmr(): PluginOption {return {
 	name	: 'custom-hmr',
 	enforce	: 'post',
 	handleHotUpdate({file, server}) {
-		if (file.endsWith('.sn')) {
-			console.log('reloading .sn file...');
+		if (/\.(ss?n|bin|webp|jpe?g|png|mp3|m4a|ogg|aac|flac|wav|html?)$/.test(file)) {
+			console.log('reloading...');
 			
 			server.ws.send({type: 'full-reload', path: '*'});
 		}

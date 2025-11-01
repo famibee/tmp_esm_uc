@@ -8,7 +8,6 @@
 import type {UserConfig} from 'vite';
 import {CustomHmr} from './src/CustomHmr';
 
-
 export default {
 	publicDir: 'doc',
 	base: './',
@@ -26,7 +25,5 @@ export default {
 		// copyPublicDir: false,
 		chunkSizeWarningLimit: 700,
 	},
-	plugins: [
-		CustomHmr(),
-	]
+	plugins: [CustomHmr()],
 } satisfies UserConfig;
