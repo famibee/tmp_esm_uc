@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@electron-toolkit/preload": "^3.0.2",
 		"@electron-toolkit/utils": "^4.0.0",
-		"@famibee/skynovel_esm": "^1.7.3",
+		"@famibee/skynovel_esm": "^1.7.4",
 		"about-window": "^1.15.2",
 		"humane-js": "^3.2.2"
 	},
@@ -39,7 +39,7 @@
 		"pkg:mac": "npm run app_bld && electron-builder --mac",
 		"pkg:linux": "npm run app_bld && electron-builder --linux",
 		"rebuild": "rimraf dist && rimraf out && npm run web_bld && npm run app_bld",
-		"slimdown_mod": "bun remove @ffmpeg-installer/ffmpeg fluent-ffmpeg fs-extra p-queue sharp",
+		"slimdown_mod": "bun remove @ffmpeg-installer/ffmpeg fluent-ffmpeg fs-extra p-queue png2icons sharp",
 		"update": "bun update"
 	},
 	"build": {
