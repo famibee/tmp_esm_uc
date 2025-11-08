@@ -7,10 +7,10 @@
 
 import './bigbox.css';	// メンテされないので自前修正版
 // import 'humane-js/themes/bigbox.css';
-import type {IPluginInitArg} from '@famibee/skynovel_esm';
+import type {T_PluginInitArg} from '@famibee/skynovel_esm';
 import Humane from 'humane-js'
 
-export async function init(pia: IPluginInitArg) {
+export async function init(pia: T_PluginInitArg) {
 	// const Humane = await import('humane-js');	// この方式はできない
 	Humane.baseCls = 'humane-bigbox';
 	pia.addTag('notice', hArg=> {

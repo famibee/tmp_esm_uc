@@ -1,9 +1,28 @@
 # Change Log
 
-## v2.18.8
+## v2.19.0
+- cjs テンプレ v2.19.0 相当
+- feat(src/main/about-window.css): 「このアプリは……」ウインドウのデザインを調整できる css 追加
+	- 「このアプリは……」でアイコンが出るか
+		- アプリ起動
+		- パッケージ版
+	- 「このアプリは……」で css が使えるか
+		- アプリ起動
+		- パッケージ版
+- fix(src/main/main.ts): 「このアプリは……」ウインドウを出し->閉じ->出しで内部エラーになる件
+- fix(package.json): homepage 削除
+	- 「このアプリは……」ウインドウに表示されるので
+- fix(src/renderer/index.html): Content-Security-Policy に「data: blob:」追記
+- fix(src/tsconfig.node.json): "types": ["electron-vite/node"] 追加
+- fix(src/tsconfig.web.json): "types": ["electron-vite/node"] 追加
 - fix: ライブラリ更新
+	- doc/prj/frames/lib/bootstrap.min.css
+	- doc/prj/frames/lib/bootstrap.min.js
+## v2.18.8
 - cjs テンプレ v2.18.8 相当
-	- memo: 拡張機能バージョン判定用
+- fix(src/main/main.ts): 「このアプリは……」でアイコンが出ない件
+- fix(src/main/main.ts): package.json から publisher を読み込むように
+- fix(package.json): publisher 項目追加
 ## v2.18.3
 - feat: .sn ファイル保存で自動リロードするように
 ## v2.18.2
