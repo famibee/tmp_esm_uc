@@ -1,6 +1,10 @@
 # Change Log
 
 ## v2.19.0
+- feat(electron.vite.config.ts): アプリも自動リロード対応
+- feat(src/CustomHmr.ts): json もファイル変更監視対象に
+- fix(src/renderer/renderer.ts): 型名変更対応
+
 - cjs テンプレ v2.19.0 相当
 - feat(src/main/about-window.css): 「このアプリは……」ウインドウのデザインを調整できる css 追加
 	- 「このアプリは……」でアイコンが出るか

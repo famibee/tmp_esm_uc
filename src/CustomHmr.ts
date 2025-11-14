@@ -12,7 +12,7 @@ export function CustomHmr(): PluginOption {return {
 	name	: 'custom-hmr',
 	enforce	: 'post',
 	handleHotUpdate({file, server}) {
-		if (/\.(ss?n|bin|webp|jpe?g|png|mp3|m4a|ogg|aac|flac|wav|html?)$/.test(file)) {
+		if (/\.(ss?n|bin|webp|jpe?g|png|mp3|m4a|ogg|aac|flac|wav|html?|json)$/.test(file)) {
 			console.log('reloading...');
 			
 			server.ws.send({type: 'full-reload', path: '*'});

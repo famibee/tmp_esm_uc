@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {HPlugin} from '@famibee/skynovel_esm/app';
-const hPlg: HPlugin = {};
+import type {T_HPlugin} from '@famibee/skynovel_esm/app';
+const hPlg: T_HPlugin = {};
 import h from '../plugin.json';
 
 globalThis.addEventListener('DOMContentLoaded', async ()=> {

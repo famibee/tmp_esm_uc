@@ -6,6 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 import {defineConfig, externalizeDepsPlugin} from 'electron-vite'
+import {CustomHmr} from './src/CustomHmr';
 
 export default defineConfig({
 	main: {
@@ -29,6 +30,7 @@ export default defineConfig({
 		},
 	},
 	renderer: {
+		plugins: [CustomHmr()],
 		build: {
 			target: 'esnext',
 		},
