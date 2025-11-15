@@ -7,7 +7,7 @@
       "dependencies": {
         "@electron-toolkit/preload": "^3.0.2",
         "@electron-toolkit/utils": "^4.0.0",
-        "@famibee/skynovel_esm": "^1.7.7",
+        "@famibee/skynovel_esm": "^1.7.9",
         "about-window": "^1.15.2",
         "humane-js": "^3.2.2",
       },
@@ -16,7 +16,7 @@
         "@electron-toolkit/eslint-config-ts": "^3.1.0",
         "@electron-toolkit/tsconfig": "^2.0.0",
         "@types/humane-js": "^3.2.4",
-        "electron": "^39.1.1",
+        "electron": "^39.2.0",
         "electron-builder": "^26.1.0",
         "electron-vite": "^4.0.1",
         "psd.js": "^3.9.2",
