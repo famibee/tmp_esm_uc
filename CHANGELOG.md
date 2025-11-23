@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.19.1
+- fix: ESM化における修正
+- fix: cjs テンプレ v2.19.0 相当
 ## v2.19.0
 - feat(electron.vite.config.ts): アプリも自動リロード対応
 - feat(src/CustomHmr.ts): json もファイル変更監視対象に
