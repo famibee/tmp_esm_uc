@@ -60,7 +60,6 @@
 		// experimentalDecorators
 		"incremental": true
 	},
-	"files": [],
 	"references": [
 		{"path": "./src/tsconfig.node.json"},
 		{"path": "./src/tsconfig.web.json"},

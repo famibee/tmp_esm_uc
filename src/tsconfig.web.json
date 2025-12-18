@@ -2,8 +2,8 @@
 	"extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
 	"include": [
 		"src/web.ts",
-		"src/renderer/**/*.ts",
-		"src/preload/*.d.ts",
+		"src/preload",
+		"src/renderer",
 	],
 	"compilerOptions": {
 		/* Bundler mode */

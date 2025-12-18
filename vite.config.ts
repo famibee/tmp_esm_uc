@@ -13,7 +13,7 @@ export default {
 	base: './',
 	build: {
 		target: 'esnext',
-		rollupOptions: {
+		rolldownOptions: {
 			output	: {
 				entryFileNames: 'web.js',
 				chunkFileNames: `assets/[name].js`,

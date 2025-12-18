@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.21.1
+- update: ライブラリ更新
+	- @famibee/skynovel_esm@2.0.0
+	- vite@8.0.0-beta.3
+- build(vite.config.ts): vite v8 対応に
+- fix: その他ビルド設定手直し
+- remove(doc/prj/frames/_album.sn): [stopfadese] 使用箇所削除
 ## v2.21.0
 - fix: フレーム画面でメモリリーク修正
 	- doc/prj/frames/_album.htm
