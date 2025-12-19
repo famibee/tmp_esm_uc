@@ -2,7 +2,7 @@
 
 ## v2.21.1
 - update: ライブラリ更新
-	- @famibee/skynovel_esm@2.0.0
+	- @famibee/skynovel_esm@2.0.1
 	- vite@8.0.0-beta.3
 - build(vite.config.ts): vite v8 対応に
 - fix: その他ビルド設定手直し
