@@ -1,4 +1,30 @@
-# Change Log
+# Changelog
+	⚠️ここはSKYNovelテンプレとしてのChangelogです⚠️
+	⚠️ゲーム開発者は触らないでください⚠️
+
+
+## v2.22.0
+- refactor: electron-vite を廃止し Vite + vite-plugin-electron 構成に移行
+	- add(vite.electron.config.ts): main/preload/renderer を vite-plugin-electron/simple でビルド
+	- remove(electron.vite.config.ts): 廃止
+	- fix(src/main/main.ts): ESM main 向けに __dirname/require を自前用意、`?url&asset` インポートを Node 実パス解決に変更、ELECTRON_RENDERER_URL → VITE_DEV_SERVER_URL
+	- fix(package.json): scripts app/app_bld を vite CLI 直接呼び出しに変更、devDependencies を入れ替え
+	- fix(src/tsconfig.node.json, src/tsconfig.web.json): electron-vite/node 型参照を削除、config 参照パス修正
+
+- fix: vite-plugin-electron の external/entryFileNames 未反映を修正
+
+	Vite 8 + vite-plugin-electron(現行版)は build.rolldownOptions を読み、
+	build.rollupOptions は無視する実装だった。vite.electron.config.ts の
+	external 関数化と main 側 entryFileNames: 'index.js' 指定が実質無効化
+	されており、main プロセスの出力ファイル名が package.json の
+	"main": "out/main/index.js" と食い違い(main.js で出力)、Electron起動時に
+	"Unable to find Electron app" となっていた。
+
+	- vite.electron.config.ts: rollupOptions → rolldownOptions に統一
+	(main/preload 両entry)
+	- main.ts: dev起動時の Electron Security Warning
+	(CSP unsafe-eval)を is.dev 限定で抑制
+
 
 ## v2.21.1
 - update: ライブラリ更新

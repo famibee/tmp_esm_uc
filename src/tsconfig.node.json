@@ -1,16 +1,15 @@
 {
 	"extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
 	"include": [
-		"electron.vite.config.ts",
-		"src/main",
-		"src/preload",
+		"../vite.electron.config.ts",
+		"CustomHmr.ts",
+		"main",
+		"preload",
 	],
 	"compilerOptions": {
 		/* Bundler mode */
 		"moduleResolution": "bundler",
 
-		"composite": true,
-
-		"types": ["electron-vite/node"]
+		"composite": true
 	}
 }

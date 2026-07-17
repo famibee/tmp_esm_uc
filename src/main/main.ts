@@ -7,8 +7,15 @@
 
 // electron メインプロセス
 import {crashReporter, app, type BrowserWindow, Menu} from 'electron';
-import {resolve} from 'node:path';
+import {resolve, dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
 import {electronApp, optimizer, is, platform} from '@electron-toolkit/utils';
+
+// vite-plugin-electron は main を ESM(.js) で出力するため、
+// electron-vite が自動注入していた __dirname / require を自前で用意する
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
 const {default: openAboutWindow} = require('about-window');
 
 const package_json_dir = resolve(__dirname, '../../');
@@ -17,12 +24,9 @@ app.name = pkg.name;	// 非パッケージだと 'Electron' になる件対応
 app.setPath('userData', app.getPath('appData') +'/'+ app.name);
 
 // メニューの「このアプリについて」のデザイン
-// @ts-ignore
-import icon_path from '../../doc/icon.png?url&asset';
-	// VSCode エラーが出るが、パッケージ版でも正しくアイコンが表示される
-// @ts-ignore
-import css_path from '../../src/main/about-window.css?url&asset';
-	// VSCode エラーが出るが、パッケージ版でも正しくcssが適用される
+// electron-vite 固有の `?url&asset` クエリを廃止し、Node の実パスで解決する
+const icon_path = resolve(__dirname, '../../doc/icon.png');
+const css_path = resolve(__dirname, '../../src/main/about-window.css');
 
 
 crashReporter.start({
@@ -41,6 +45,10 @@ app.on('second-instance', ()=> {
 	guiWin.focus();
 });
 app.whenReady().then(async ()=> {
+	// dev起動時の Electron Security Warning(CSPのunsafe-eval等)を抑制。
+	// パッケージ後はどちらにせよ警告自体が出ないため is.dev 限定でOK。
+	if (is.dev) process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+
 	// Set app user model id for windows
 	electronApp.setAppUserModelId(pkg.appId);
 
@@ -56,12 +64,11 @@ app.whenReady().then(async ()=> {
 	)
 	.on('close', ()=> app.exit());
 
-	// HMR for renderer base on electron-vite cli.
+	// HMR for renderer base on vite-plugin-electron.
 	// Load the remote URL for development or the local html file for production.
-	const urlEr = process.env['ELECTRON_RENDERER_URL'];
+	const urlEr = process.env['VITE_DEV_SERVER_URL'];
 	if (is.dev && urlEr) w.loadURL(urlEr);
 	else w.loadFile(resolve(__dirname, '../renderer/index.html'));
-	// else w.loadFile('./index.html');		とかはダメ（2025/01/05）
 
 	const isMac = platform.isMacOS;
 	const wc = w.webContents;
